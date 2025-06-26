@@ -1,0 +1,16 @@
+services:
+  go-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go_dev_env
+    volumes:
+      - ./learnGo:/home/devuser/learnGo
+      - ./.config/nvim:/home/devuser/.config/nvim
+      - ./.local/share/nvim:/home/devuser/.local/share/nvim
+      - ./.cache/nvim:/home/devuser/.cache/nvim
+      - ./.local/state/nvim:/home/devuser/.local/state/nvim
+      - ./.cache/go-build:/home/devuser/.cache/go-build
+    stdin_open: true
+    tty: true
+    user: "1000:1000"  # Adjust if your host UID/GID differs
