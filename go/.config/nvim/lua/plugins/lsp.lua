@@ -74,10 +74,7 @@ return {
         -- Language server configurations
         local servers = {
             lua_ls = {},
-            basedpyright = {},
-            clangd = {},
-            biome = {},
-            ts_ls = {},
+            gopls = {},
         }
         -- Mason-manageable servers (used in ensure_installed)
         local mason_servers = vim.tbl_keys(servers)
