@@ -1,0 +1,20 @@
+services:
+  react-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react_dev_env
+    volumes:
+      # Mount the future React app directory
+      - ./learn-react:/home/node/app
+      # Mount your Neovim configuration and state
+      - ./.config/nvim:/home/node/.config/nvim
+      - ./.local/share/nvim:/home/node/.local/share/nvim
+      - ./.cache/nvim:/home/node/.cache/nvim
+      - ./.local/state/nvim:/home/node/.local/state/nvim
+    stdin_open: true # Keep stdin open for an interactive session
+    tty: true        # Allocate a pseudo-TTY
+    ports:
+      # Map host port 5173 to container port 5173 for Vite
+      - "5173:5173"
+    user: "1000:1000"
