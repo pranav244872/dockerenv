@@ -83,6 +83,7 @@ To avoid reinstalling plugins on every container run:
 | Language | Folder | Status  |
 | -------- | ------ | ------- |
 | Go       | `go/`  | ✅ Ready |
+| React       | `react/`  | ✅ Ready |
 
 > More languages (Python, Rust, etc.) will be added soon.
 
