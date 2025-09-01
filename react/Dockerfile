@@ -14,6 +14,7 @@ RUN apt-get update && \
         fd-find \
         unzip \
         build-essential \
+        fzf \
     && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -22,7 +23,7 @@ RUN ln -s $(which fdfind) /usr/local/bin/fd || true
 
 
 # Install Neovim v0.11.3 from the provided URL
-RUN curl -L -o nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/download/v0.11.3/nvim-linux-x86_64.tar.gz && \
+RUN curl -L -o nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz && \
     tar xzf nvim-linux-x86_64.tar.gz && \
     mv nvim-linux-x86_64 /opt/nvim && \
     ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim && \
