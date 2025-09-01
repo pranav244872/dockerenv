@@ -27,14 +27,18 @@ vim.keymap.set("n", "<C-k>", ":vertical resize +2<CR>", { silent = true })
 
 -- fzf-lua
 -- [[ fzf-lua Keymaps ]]
-vim.keymap.set("n", "<leader>?", require("fzf-lua").oldfiles, { desc = "[?] Find recently opened files" })
-vim.keymap.set("n", "<leader><space>", require("fzf-lua").buffers, { desc = "[ ] Find existing buffers" })
-vim.keymap.set("n", "<leader>ff", require("fzf-lua").files, { desc = "[F]ind [F]iles" })
-vim.keymap.set("n", "<leader>fg", require("fzf-lua").live_grep, { desc = "[F]ind by [G]rep" })
-vim.keymap.set("n", "<leader>fh", require("fzf-lua").help_tags, { desc = "[F]ind [H]elp" })
+vim.keymap.set("n", "<leader>?", function() require("fzf-lua").oldfiles() end,
+    { desc = "[?] Find recently opened files" })
+vim.keymap.set("n", "<leader><space>", function() require("fzf-lua").buffers() end,
+    { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>ff", function() require("fzf-lua").files() end, { desc = "[F]ind [F]iles" })
+vim.keymap.set("n", "<leader>fg", function() require("fzf-lua").live_grep() end, { desc = "[F]ind by [G]rep" })
+vim.keymap.set("n", "<leader>fh", function() require("fzf-lua").help_tags() end, { desc = "[F]ind [H]elp" })
 vim.keymap.set("n", "<leader>en", function()
     require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "[E]dit [N]eovim config" })
+vim.keymap.set("n", "<leader>dd", function() require("fzf-lua").lsp_document_diagnostics() end,
+    { desc = "[D]ocument [D]iagnostics" })
 
 -- oil
 -- [[Oil Keymaps]]
@@ -54,41 +58,13 @@ vim.keymap.set("n", "<leader>cw", function()
     require("oil").open_float(dir)
 end, { desc = "Open Current File's Directory in Oil Float" })
 
-vim.keymap.set("n", "gl", function()
-    vim.diagnostic.open_float()
-end, { desc = "Open Diagnostics in Float" })
+-- Open floating diagnostics
+vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end,
+    { desc = "Open Diagnostics in Float" }
+)
 
--- Keymaps for terminal --
-local snacks = require("snacks.terminal")
-
--- Toggle a default terminal (split at bottom)
-vim.keymap.set("n", "<leader>tt", function()
-    snacks.toggle(nil, { interactive = true })
-end, { desc = "[T]oggle default [T]erminal" })
-
--- Toggle a floating terminal running lazygit
-vim.keymap.set("n", "<leader>tg", function()
-    snacks.toggle("lazygit", {
-        auto_close = true,
-        start_insert = false,
-    })
-end, { desc = "[T]oggle [G]it (lazygit)" })
-
--- Toggle a floating terminal running htop
-vim.keymap.set("n", "<leader>ts", function()
-    snacks.toggle("htop", {
-        auto_close = true,
-        start_insert = true,
-    })
-end, { desc = "[T]oggle [S]ystem Monitor (htop)" })
-
--- Toggle terminal in current file's directory
-vim.keymap.set("n", "<leader>tc", function()
-    local dir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h")
-    snacks.toggle(nil, { cwd = dir, interactive = true })
-end, { desc = "[T]erminal in [C]urrent file's directory" })
-
--- Toggle terminal in project root
-vim.keymap.set("n", "<leader>tr", function()
-    snacks.toggle(nil, { cwd = vim.fn.getcwd(), interactive = true })
-end, { desc = "[T]erminal in [R]oot directory" })
+-- Show list of diagnostics
+vim.keymap.set("n", "<leader>dl", function()
+    vim.diagnostic.setloclist()
+    vim.cmd("lopen")
+end, { desc = "[D]iagnostic [L]ist" })
