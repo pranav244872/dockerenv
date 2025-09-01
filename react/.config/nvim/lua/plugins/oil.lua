@@ -1,8 +1,13 @@
+-- lua/plugins/oil.lua
 return {
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
+    opts = {
+        view_options = {
+            show_hidden = true,
+        },
+    },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     lazy = false,
