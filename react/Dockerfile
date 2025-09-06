@@ -33,7 +33,7 @@ RUN curl -L -o nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/release
 USER node
 
 # Set the working directory inside the container.
-WORKDIR /home/node/app
+WORKDIR /home/node/apps
 
 # Expose the default Vite port.
 EXPOSE 5173

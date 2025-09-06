@@ -6,7 +6,7 @@ services:
     container_name: react_dev_env
     volumes:
       # Mount the future React app directory
-      - ./learn-react:/home/node/app
+      - ./learn-react:/home/node/apps/
       # Mount your Neovim configuration and state
       - ./.config/nvim:/home/node/.config/nvim
       - ./.local/share/nvim:/home/node/.local/share/nvim
