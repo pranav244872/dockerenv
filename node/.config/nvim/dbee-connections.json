@@ -1,8 +1,0 @@
-[
-    {
-        "id": "file_source_/vYxeuMVKwt", 
-        "url": "postgres://postgres:devpass@postgres:5432/devdb?sslmode=disable", 
-        "name": "lenslocked", 
-        "type": "postgres"
-    }
-]
